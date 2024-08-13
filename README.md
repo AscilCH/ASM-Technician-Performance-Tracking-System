@@ -54,14 +54,6 @@ The Backend API is the core of the system, handling data processing, storage, an
 
 ### Installation
 
-#### Clone the Repositories
-
-```bash
-git clone https://github.com/YourUsername/technician-dashboard.git
-git clone https://github.com/YourUsername/admin-dashboard.git
-git clone https://github.com/YourUsername/backend-api.git
-```
-
 #### Install Frontend Dependencies
 
 Navigate to the Technician and Admin Dashboard directories and run:
