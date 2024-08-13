@@ -1,0 +1,16 @@
+/* missions-table.component.css */
+.status-expire {
+    color: red;
+}
+
+.status-en-attente {
+    color: orange;
+}
+
+.status-en-execution {
+    color: rgb(81, 81, 236);
+}
+
+.status-execute {
+    color: green;
+}

@@ -1,0 +1,46 @@
+<form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()">
+    <div class="grid">
+      <div class="col-12">
+        <p-toast></p-toast>
+        <div class="card">
+          <h5>Add Reclamation</h5>
+          <div class="p-fluid p-formgrid grid">
+
+            <div class="field col-12 md:col-6">
+              <label htmlFor="technicien_id">Technician ID</label>
+              <input pInputText id="technicien_id" type="number" formControlName="technicien_id" />
+              <div *ngIf="reclamationForm.controls['technicien_id'].invalid && reclamationForm.controls['technicien_id'].touched">
+                <small class="p-error">Technician ID is required.</small>
+              </div>
+            </div>
+
+            <div class="field col-12">
+              <label htmlFor="titre">Title</label>
+              <input pInputText id="titre" type="text" formControlName="titre" />
+              <div *ngIf="reclamationForm.controls['titre'].invalid && reclamationForm.controls['titre'].touched">
+                <small class="p-error">Title is required.</small>
+              </div>
+            </div>
+
+            <div class="field col-12">
+              <label htmlFor="description">Description</label>
+              <textarea pInputTextarea id="description" rows="4" formControlName="description"></textarea>
+              <div *ngIf="reclamationForm.controls['description'].invalid && reclamationForm.controls['description'].touched">
+                <small class="p-error">Description is required.</small>
+              </div>
+            </div>
+
+            <div class="field col-12">
+              <label htmlFor="image">Image</label><br>
+              <input type="file" id="image" (change)="onFileChange($event)" />
+              <div *ngIf="imageError">
+                <small class="p-error">{{ imageError }}</small>
+              </div>
+            </div>
+
+          </div>
+          <button pButton type="submit" label="Submit" [disabled]="reclamationForm.invalid"></button>
+        </div>
+      </div>
+    </div>
+  </form>

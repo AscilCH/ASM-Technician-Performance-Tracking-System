@@ -1,0 +1,304 @@
+{
+    "data": [
+        {
+            "id": 1000,
+            "email": "bamboo@watch.com",
+            "password": "password1",
+            "first_name": "Bamboo",
+            "last_name": "Watch",
+            "score": 65,
+            "type": "installation",
+            "photo": "bamboo-watch.jpg"
+        },
+        {
+            "id": 1001,
+            "email": "black@watch.com",
+            "password": "password2",
+            "first_name": "Black",
+            "last_name": "Watch",
+            "score": 72,
+            "type": "integration",
+            "photo": "black-watch.jpg"
+        },
+        {
+            "id": 1002,
+            "email": "blue@band.com",
+            "password": "password3",
+            "first_name": "Blue",
+            "last_name": "Band",
+            "score": 79,
+            "type": "SAV",
+            "photo": "blue-band.jpg"
+        },
+        {
+            "id": 1003,
+            "email": "blue@tshirt.com",
+            "password": "password4",
+            "first_name": "Blue",
+            "last_name": "T-Shirt",
+            "score": 29,
+            "type": "installation",
+            "photo": "blue-t-shirt.jpg"
+        },
+        {
+            "id": 1004,
+            "email": "bracelet@accessories.com",
+            "password": "password5",
+            "first_name": "Bracelet",
+            "last_name": "Accessories",
+            "score": 15,
+            "type": "integration",
+            "photo": "bracelet.jpg"
+        },
+        {
+            "id": 1005,
+            "email": "brown@purse.com",
+            "password": "password6",
+            "first_name": "Brown",
+            "last_name": "Purse",
+            "score": 120,
+            "type": "SAV",
+            "photo": "brown-purse.jpg"
+        },
+        {
+            "id": 1006,
+            "email": "chakra@bracelet.com",
+            "password": "password7",
+            "first_name": "Chakra",
+            "last_name": "Bracelet",
+            "score": 32,
+            "type": "installation",
+            "photo": "chakra-bracelet.jpg"
+        },
+        {
+            "id": 1007,
+            "email": "galaxy@earrings.com",
+            "password": "password8",
+            "first_name": "Galaxy",
+            "last_name": "Earrings",
+            "score": 34,
+            "type": "integration",
+            "photo": "galaxy-earrings.jpg"
+        },
+        {
+            "id": 1008,
+            "email": "game@controller.com",
+            "password": "password9",
+            "first_name": "Game",
+            "last_name": "Controller",
+            "score": 99,
+            "type": "SAV",
+            "photo": "game-controller.jpg"
+        },
+        {
+            "id": 1009,
+            "email": "gaming@set.com",
+            "password": "password10",
+            "first_name": "Gaming",
+            "last_name": "Set",
+            "score": 299,
+            "type": "installation",
+            "photo": "gaming-set.jpg"
+        },
+        {
+            "id": 1010,
+            "email": "gold@phonecase.com",
+            "password": "password11",
+            "first_name": "Gold",
+            "last_name": "Phone Case",
+            "score": 24,
+            "type": "integration",
+            "photo": "gold-phone-case.jpg"
+        },
+        {
+            "id": 1011,
+            "email": "green@earbuds.com",
+            "password": "password12",
+            "first_name": "Green",
+            "last_name": "Earbuds",
+            "score": 89,
+            "type": "SAV",
+            "photo": "green-earbuds.jpg"
+        },
+        {
+            "id": 1012,
+            "email": "green@tshirt.com",
+            "password": "password13",
+            "first_name": "Green",
+            "last_name": "T-Shirt",
+            "score": 49,
+            "type": "installation",
+            "photo": "green-t-shirt.jpg"
+        },
+        {
+            "id": 1013,
+            "email": "grey@tshirt.com",
+            "password": "password14",
+            "first_name": "Grey",
+            "last_name": "T-Shirt",
+            "score": 48,
+            "type": "integration",
+            "photo": "grey-t-shirt.jpg"
+        },
+        {
+            "id": 1014,
+            "email": "headphones@electronics.com",
+            "password": "password15",
+            "first_name": "Headphones",
+            "last_name": "Electronics",
+            "score": 175,
+            "type": "SAV",
+            "photo": "headphones.jpg"
+        },
+        {
+            "id": 1015,
+            "email": "lightgreen@tshirt.com",
+            "password": "password16",
+            "first_name": "Light Green",
+            "last_name": "T-Shirt",
+            "score": 49,
+            "type": "installation",
+            "photo": "light-green-t-shirt.jpg"
+        },
+        {
+            "id": 1016,
+            "email": "lime@band.com",
+            "password": "password17",
+            "first_name": "Lime",
+            "last_name": "Band",
+            "score": 79,
+            "type": "integration",
+            "photo": "lime-band.jpg"
+        },
+        {
+            "id": 1017,
+            "email": "mini@speakers.com",
+            "password": "password18",
+            "first_name": "Mini",
+            "last_name": "Speakers",
+            "score": 85,
+            "type": "SAV",
+            "photo": "mini-speakers.jpg"
+        },
+        {
+            "id": 1018,
+            "email": "painted@phonecase.com",
+            "password": "password19",
+            "first_name": "Painted",
+            "last_name": "Phone Case",
+            "score": 56,
+            "type": "installation",
+            "photo": "painted-phone-case.jpg"
+        },
+        {
+            "id": 1019,
+            "email": "pink@band.com",
+            "password": "password20",
+            "first_name": "Pink",
+            "last_name": "Band",
+            "score": 79,
+            "type": "integration",
+            "photo": "pink-band.jpg"
+        },
+        {
+            "id": 1020,
+            "email": "pink@purse.com",
+            "password": "password21",
+            "first_name": "Pink",
+            "last_name": "Purse",
+            "score": 110,
+            "type": "SAV",
+            "photo": "pink-purse.jpg"
+        },
+        {
+            "id": 1021,
+            "email": "purple@band.com",
+            "password": "password22",
+            "first_name": "Purple",
+            "last_name": "Band",
+            "score": 79,
+            "type": "installation",
+            "photo": "purple-band.jpg"
+        },
+        {
+            "id": 1022,
+            "email": "purple@necklace.com",
+            "password": "password23",
+            "first_name": "Purple",
+            "last_name": "Necklace",
+            "score": 45,
+            "type": "integration",
+            "photo": "purple-gemstone-necklace.jpg"
+        },
+        {
+            "id": 1023,
+            "email": "purple@tshirt.com",
+            "password": "password24",
+            "first_name": "Purple",
+            "last_name": "T-Shirt",
+            "score": 49,
+            "type": "SAV",
+            "photo": "purple-t-shirt.jpg"
+        },
+        {
+            "id": 1024,
+            "email": "shoes@clothing.com",
+            "password": "password25",
+            "first_name": "Shoes",
+            "last_name": "Clothing",
+            "score": 64,
+            "type": "installation",
+            "photo": "shoes.jpg"
+        },
+        {
+            "id": 1025,
+            "email": "sneakers@clothing.com",
+            "password": "password26",
+            "first_name": "Sneakers",
+            "last_name": "Clothing",
+            "score": 78,
+            "type": "integration",
+            "photo": "sneakers.jpg"
+        },
+        {
+            "id": 1026,
+            "email": "teal@tshirt.com",
+            "password": "password27",
+            "first_name": "Teal",
+            "last_name": "T-Shirt",
+            "score": 49,
+            "type": "SAV",
+            "photo": "teal-t-shirt.jpg"
+        },
+        {
+            "id": 1027,
+            "email": "yellow@earbuds.com",
+            "password": "password28",
+            "first_name": "Yellow",
+            "last_name": "Earbuds",
+            "score": 89,
+            "type": "installation",
+            "photo": "yellow-earbuds.jpg"
+        },
+        {
+            "id": 1028,
+            "email": "yoga@mat.com",
+            "password": "password29",
+            "first_name": "Yoga",
+            "last_name": "Mat",
+            "score": 20,
+            "type": "integration",
+            "photo": "yoga-mat.jpg"
+        },
+        {
+            "id": 1029,
+            "email": "yoga@set.com",
+            "password": "password30",
+            "first_name": "Yoga",
+            "last_name": "Set",
+            "score": 20,
+            "type": "SAV",
+            "photo": "yoga-set.jpg"
+        }
+    ]
+}

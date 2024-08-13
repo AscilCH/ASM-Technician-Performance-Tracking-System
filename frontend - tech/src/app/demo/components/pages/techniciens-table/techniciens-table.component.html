@@ -1,0 +1,224 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    
+                </ng-template>
+
+          
+            </p-toolbar>
+
+            <p-table #dt [value]="techs"  responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','category','price','inventoryStatus']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedTechs" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Manage Techniciens</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        
+                      <!--   <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th> -->
+                        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                       <!--  <th>Password</th> -->
+                        <th pSortableColumn="first_name">First Name <p-sortIcon field="first_name"></p-sortIcon></th>
+                        <th pSortableColumn="last_name">Last Name <p-sortIcon field="last_name"></p-sortIcon></th>
+                        <th pSortableColumn="score">Score <p-sortIcon field="score"></p-sortIcon></th>
+                        <th pSortableColumn="type">Type <p-sortIcon field="type"></p-sortIcon></th>
+                        <th>Photo</th> 
+                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-tech>
+                    <tr>
+                       
+                       <!--  <td style="width:14%; min-width:10rem;"><span class="p-column-title">ID</span>
+                            {{tech.id}}
+                        </td> -->
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Email</span>
+                            {{tech.email}}
+                        </td>
+                       <!--  <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Password</span>
+                            {{tech.password}}
+                        </td> -->
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">First Name</span>
+                            {{tech.first_name}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Last Name</span>
+                            {{tech.last_name}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Score</span>
+                            {{tech.score}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Type</span>
+                            {{tech.type}}
+                        </td>
+                        <td><img [src]="'http://127.0.0.1:8000/image/' + tech.photo + '.jpg'" alt="Tech Image" width="100"/></td>
+                       <!--  <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Photo</span>
+                            <img [src]="tech.photo" [alt]="tech.first_name + ' ' + tech.last_name" width="100" class="shadow-4" />
+                        </td> -->
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-dialog [(visible)]="techDialog" [style]="{width: '450px'}" header="Techniciens Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+               
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" pInputText id="email" [(ngModel)]="tech.email" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !tech.email}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !tech.email">Email is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" pInputText id="password" [(ngModel)]="tech.password" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !tech.password}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !tech.password">Password is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="first_name">First Name</label>
+                    <input type="text" pInputText id="first_name" [(ngModel)]="tech.first_name" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !tech.first_name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !tech.first_name">First name is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" pInputText id="last_name" [(ngModel)]="tech.last_name" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !tech.last_name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !tech.last_name">Last name is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="score">Score</label>
+                    <p-inputNumber id="score" [(ngModel)]="tech.score"></p-inputNumber>
+                </div>
+
+                <div class="field">
+                    <label for="type">Type</label>
+                    <p-dropdown [(ngModel)]="tech.type" inputId="type" [options]="types" placeholder="Select Type">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="tech && tech.type">{{tech.type}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span>{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="field col-12">
+                    <label htmlFor="image">Image</label><br>
+                    <input type="file" id="image" (change)="onFileChange($event)" />
+                    <div *ngIf="imageError">
+                      <small class="p-error">{{ imageError }}</small>
+                    </div>
+                  </div>
+      
+<!-- 
+                 <div class="field">
+                    <label for="photo">Photo URL</label>
+                    <input type="file" pInputText id="photo" [(ngModel)]="tech.photo"/>
+                </div> -->
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveTech()"></button>
+            </ng-template>
+        </p-dialog>
+
+
+        <p-dialog [(visible)]="deleteTechDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="tech">Are you sure you want to delete <b>{{tech.name}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteTechDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteTechsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>Are you sure you want to delete selected techs?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteTechsDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="techeditDialog" [style]="{width: '450px'}" header="Techniciens Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <!-- <img [src]="tech.photo" [alt]="tech.first_name + ' ' + tech.last_name" width="100" class="shadow-4" /> -->
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email"  pInputText id="email" [(ngModel)]="tech.email" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !tech.email}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !tech.email">Email is required.</small>
+                </div>
+
+               <!--  <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" pInputText id="password" [(ngModel)]="product.password" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.password}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.password">Password is required.</small>
+                </div> -->
+
+                <div class="field">
+                    <label for="first_name">First Name</label>
+                    <input type="text" pInputText id="first_name" [(ngModel)]="tech.first_name" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !tech.first_name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !tech.first_name">First name is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" pInputText id="last_name" [(ngModel)]="tech.last_name" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !tech.last_name}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !tech.last_name">Last name is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="score">Score</label>
+                    <p-inputNumber id="score" [(ngModel)]="tech.score"></p-inputNumber>
+                </div>
+
+                <div class="field">
+                    <label for="type">Type</label>
+                    <p-dropdown [(ngModel)]="tech.type" inputId="type" [options]="types" placeholder="Select Type">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="tech && tech.type">{{tech.type}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span>{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+
+               <!--  <div class="field">
+                    <label for="photo">Photo</label>
+                    <input type="file" pInputText id="photo" (change)="onFileSelected($event)" />
+                </div> -->
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveeditTech()"></button>
+            </ng-template>
+        </p-dialog>
+
+
+
+
+    </div>
+</div>
+
+

@@ -1,0 +1,93 @@
+<div class="surface-section p-4 md:p-6 lg:p-8">
+  <div class="font-medium text-3xl text-primary mb-4">   <i class="pi pi-user mr-2"style="height: 30px; width: 40px; font-size: 40px;"></i> User Information</div>
+    <div class="text-secondary mb-6">Manage your profile details below.</div>
+    
+    <div class="surface-card p-5 shadow-2 border-round">
+      <ul class="list-none p-0 m-0">
+        <p-toast></p-toast>
+  
+        <!-- Photo -->
+        <li class="flex align-items-center py-4 px-3 border-top-1 surface-border flex-wrap">
+          <div class="text-secondary w-6 md:w-2 font-medium">Photo</div>
+          <div class="text-primary w-full md:w-8 md:flex-order-0 flex-order-1">
+            <img *ngIf="user?.photo" [src]="authService.getImageUrl(user.photo)" alt="User Photo" class="user-photo border-circle shadow-1" />
+            <span *ngIf="!user?.photo">No Photo</span>
+          </div>
+          <div class="w-6 md:w-2 flex justify-content-end">
+            <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text p-button-rounded" (click)="edit('photo')"></button>
+          </div>
+        </li>
+  
+        <!-- User Fields -->
+        <li class="flex align-items-center py-4 px-3 border-top-1 surface-border flex-wrap" *ngFor="let field of ['first_name', 'last_name', 'email', 'type', 'score']">
+          <div class="text-secondary w-6 md:w-2 font-medium">{{ field | titlecase }}</div>
+          <div class="text-primary w-full md:w-8 md:flex-order-0 flex-order-1">{{ user[field] }}</div>
+          <div *ngIf="field !== 'score' && field !== 'type'" class="w-6 md:w-2 flex justify-content-end">
+            <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text p-button-rounded" (click)="edit(field)"></button>
+          </div>
+        </li>
+      </ul>
+  
+      <!-- Save Button -->
+      <div class="mt-6 flex justify-content-end">
+        <button pButton pRipple label="Save" icon="pi pi-save" class="p-button-primary p-button-rounded" (click)="save()"></button>
+      </div>
+    </div>
+  
+    <!-- Dialog for Editing -->
+    <p-dialog header="Edit User" [(visible)]="displayEditDialog" [modal]="true" [style]="{width: '40vw'}" class="shadow-3 border-round">
+      <form [formGroup]="editForm" (ngSubmit)="saveEdit()">
+        <div class="p-fluid">
+          <!-- First Name -->
+          <div class="field" *ngIf="editField === 'first_name'">
+            <label for="first_name">First Name</label>
+            <input pInputText id="first_name" formControlName="first_name" class="p-inputtext-sm" />
+            <div *ngIf="editForm.controls['first_name'].dirty && editForm.controls['first_name'].invalid" class="p-error">
+              First name is required.
+            </div>
+          </div>
+          
+          <!-- Last Name -->
+          <div class="field" *ngIf="editField === 'last_name'">
+            <label for="last_name">Last Name</label>
+            <input pInputText id="last_name" formControlName="last_name" class="p-inputtext-sm" />
+            <div *ngIf="editForm.controls['last_name'].dirty && editForm.controls['last_name'].invalid" class="p-error">
+              Last name is required.
+            </div>
+          </div>
+          
+          <!-- Email -->
+          <div class="field" *ngIf="editField === 'email'">
+            <label for="email">Email</label>
+            <input pInputText id="email" formControlName="email" class="p-inputtext-sm" />
+            <div *ngIf="editForm.controls['email'].dirty && editForm.controls['email'].invalid" class="p-error">
+              Valid email is required.
+            </div>
+          </div>
+          
+          <!-- Type -->
+          <div class="field" *ngIf="editField === 'type'">
+            <label for="type">Type</label>
+            <p-dropdown [options]="types" formControlName="type" placeholder="Select a type" class="p-dropdown-sm"></p-dropdown>
+            <div *ngIf="editForm.controls['type'].dirty && editForm.controls['type'].invalid" class="p-error">
+              Type is required.
+            </div>
+          </div>
+          
+          <!-- Photo -->
+          <div class="field" *ngIf="editField === 'photo'">
+            <label for="photo">Photo</label>
+            <input type="file" id="photo" (change)="onFileChange($event)" class="p-inputtext-sm" />
+            <div *ngIf="imageError">
+              <small class="p-error">{{ imageError }}</small>
+            </div>
+          </div>
+        </div>
+        <p-footer>
+          <button pButton label="Cancel" icon="pi pi-times" (click)="cancelEdit()" class="p-button-text p-button-rounded"></button>
+          <button pButton label="Save" icon="pi pi-check" type="submit" class="p-button-primary p-button-rounded"></button>
+        </p-footer>
+      </form>
+    </p-dialog>
+  </div>
+  

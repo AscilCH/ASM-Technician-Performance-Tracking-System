@@ -1,0 +1,125 @@
+.surface-section {
+    padding: 2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-bottom: 2rem;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  .text-3xl {
+    font-size: 2rem;
+  }
+  
+  .text-900 {
+    color: #212121;
+  }
+  
+  .text-500 {
+    color: #9e9e9e;
+  }
+  
+  .mb-3 {
+    margin-bottom: 1rem;
+  }
+  
+  .mb-5 {
+    margin-bottom: 2rem;
+  }
+  
+  .list-none {
+    list-style: none;
+  }
+  
+  .p-0 {
+    padding: 0;
+  }
+  
+  .m-0 {
+    margin: 0;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  .py-3 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .border-top-1 {
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .surface-border {
+    border-color: #e0e0e0;
+  }
+  
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .w-6 {
+    width: 50%;
+  }
+  
+  .md\:w-2 {
+    width: 16.666667%;
+  }
+  
+  .md\:w-8 {
+    width: 66.666667%;
+  }
+  
+  .md\:flex-order-0 {
+    order: 0;
+  }
+  
+  .flex-order-1 {
+    order: 1;
+  }
+  
+  .justify-content-end {
+    justify-content: flex-end;
+  }
+  
+  .user-photo {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+  }
+  
+  .mt-4 {
+    margin-top: 1.5rem;
+  }
+  
+  .p-button-text {
+    background: none;
+    border: none;
+    color: #007ad9;
+    cursor: pointer;
+  }
+  
+  .p-button-primary {
+    background-color: #007ad9;
+    border: none;
+    color: white;
+  }
+  
+  .p-dialog {
+    width: 30vw;
+  }
+  

@@ -1,0 +1,245 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                   
+                </ng-template>
+
+               
+            </p-toolbar>
+
+            <p-table #dt [value]="misses" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nom','type','DateDeb','DateFin','Difficulte','Status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedMisses" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Manage Missions</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                       <!--  <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th> -->
+                        <!-- <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th> -->
+                        <th pSortableColumn="nom">Name <p-sortIcon field="nom"></p-sortIcon></th>
+                        <th pSortableColumn="type">Type <p-sortIcon field="type"></p-sortIcon></th>
+                        <th pSortableColumn="DateDeb">Start Date <p-sortIcon field="DateDeb"></p-sortIcon></th>
+                        <th pSortableColumn="DateFin">End Date <p-sortIcon field="DateFin"></p-sortIcon></th>
+                        <th pSortableColumn="Difficulte">Difficulty <p-sortIcon field="Difficulte"></p-sortIcon></th>
+                        <th pSortableColumn="Status">Status <p-sortIcon field="Status"></p-sortIcon></th>
+                       <!--  <th pSortableColumn="idtech">idtech <p-sortIcon field="idtech"></p-sortIcon></th>
+                        <th pSortableColumn="idclient">idclient <p-sortIcon field="idclient"></p-sortIcon></th> -->
+                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-miss>
+                    <tr>
+                        <!-- <td>
+                            <p-tableCheckbox [value]="miss"></p-tableCheckbox>
+                        </td> -->
+                       <!--  <td style="width:14%; min-width:10rem;"><span class="p-column-title">ID</span>
+                            {{miss.id}}
+                        </td> -->
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Name</span>
+                            {{miss.nom}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Type</span>
+                            {{miss.type}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Start Date</span>
+                            {{miss.DateDeb | date}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">End Date</span>
+                            {{miss.DateFin | date}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Difficulty</span>
+                            {{miss.Difficulte}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;">
+                            <span class="p-column-title">Status</span>
+                            <span [ngClass]="{
+                                'status-en-attente': miss.Status === 'en attente',
+                                'status-en-execution': miss.Status === 'en execution',
+                                'status-execute': miss.Status === 'executé',
+                                'status-expire': miss.Status === 'expiré'
+                            }">{{miss.Status}}</span>
+                        </td>
+
+                        <!-- <td style="width:14%; min-width: 10rem;"><span class="p-column-title">idtech</span>
+                            {{miss.idtech}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">idclient</span>
+                            {{miss.idclient}}
+                        </td> -->
+
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-dialog [(visible)]="missDialog" [style]="{width: '450px'}" header="Mission Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="nom">Name</label>
+                    <input type="text" pInputText id="nom" [(ngModel)]="miss.nom" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !miss.nom}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !miss.nom">Name is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="type">Type</label>
+                    <p-dropdown [(ngModel)]="miss.type" inputId="type" [options]="types" placeholder="Select Type">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="miss && miss.type">{{miss.type}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span>{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+
+                <div class="field">
+                    <label for="DateDeb">Start Date</label>
+                    <input type="text"  pInputText required [ngClass]="{'ng-invalid ng-dirty' : submitted && !miss.DateDeb}" [(ngModel)]="miss.DateDeb"  inputId="DateDeb"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !miss.DateDeb">date debut is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="DateFin">End Date</label>
+                    <input type="text" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !miss.DateFin}"  pInputText  [(ngModel)]="miss.DateFin"  inputId="DateFin"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !miss.DateFin">date fin is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="Difficulte">Difficulty</label>
+                    <p-inputNumber id="Difficulte" [(ngModel)]="miss.Difficulte"></p-inputNumber>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !miss.Difficulte">difficulty is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="Status">Status</label>
+                    <p-dropdown [(ngModel)]="miss.Status" inputId="Status" [options]="statuses" placeholder="Select Status">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="miss && miss.Status">{{miss.Status}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span>{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveMiss()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteMissDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="miss">Are you sure you want to delete <b>{{miss.nom}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteMissDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteMissesDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>Are you sure you want to delete selected missions?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteMissesDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="missEditDialog" [style]="{width: '450px'}" header="Mission Details" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="nom">Name</label>
+                    <input type="text" pInputText id="nom" [(ngModel)]="miss.nom" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !miss.nom}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !miss.nom">Name is required.</small>
+                </div>
+
+                <div class="field">
+                    <label for="type">Type</label>
+                    <p-dropdown [(ngModel)]="miss.type" inputId="type" [options]="types" placeholder="Select Type">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="miss && miss.type">{{miss.type}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span>{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+
+                <div class="field">
+                    <label for="DateDeb">Start Date</label>
+                    <input type="text"  pInputText  [(ngModel)]="miss.DateDeb" [showTime]="false" inputId="DateDeb"/>
+                </div>
+
+                <div class="field">
+                    <label for="DateFin">End Date</label>
+                    <input type="text"  pInputText [(ngModel)]="miss.DateFin" [showTime]="false" inputId="DateFin"/>
+                </div>
+
+                <div class="field">
+                    <label for="Difficulte">Difficulty</label>
+                    <p-inputNumber id="Difficulte" [(ngModel)]="miss.Difficulte"></p-inputNumber>
+                </div>
+
+                <div class="field">
+                    <label for="Status">Status</label>
+                    <p-dropdown [(ngModel)]="miss.Status" inputId="Status" [options]="statuses" placeholder="Select Status">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="miss && miss.Status">{{miss.Status}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span>{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveeditMiss()"></button>
+            </ng-template>
+        </p-dialog>
+        <p-dialog [(visible)]="missaffecterDialog" [style]="{width: '450px'}" header="Affecter Mission Details" [modal]="true" class="p-fluid">
+
+            <ng-template pTemplate="content">
+                
+                <h4>Infos technicien :</h4>
+                <div class="field">
+                    <label for="Difficulte">Id technicien </label>
+                    <p-inputNumber id="idtech" [(ngModel)]="affected_idtech"></p-inputNumber><!-- change here miss.idtech -->
+                </div>
+
+                <h4>Infos client:</h4>
+                <div class="field">
+                    <label for="Difficulte">Id client </label>
+                    <p-inputNumber id="idcli" [(ngModel)]="affected_idcli"></p-inputNumber><!-- change here miss.idclient -->
+                </div>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveaffecterMiss()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

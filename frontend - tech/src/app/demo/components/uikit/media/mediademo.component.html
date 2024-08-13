@@ -1,0 +1,18 @@
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Galleria</h5>
+            <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
+                        [containerStyle]="{'max-width': '800px', 'margin':'auto'}" [numVisible]="6" [circular]="true">
+                <ng-template pTemplate="item" let-item>
+                    <img [src]="item.itemImageSrc" style="width: 100%; display: block;"/>
+                </ng-template>
+                <ng-template pTemplate="thumbnail" let-item>
+                    <div class="grid nogutter justify-center">
+                        <img [src]="item.thumbnailImageSrc" style="display: block;"/>
+                    </div>
+                </ng-template>
+            </p-galleria>
+        </div>
+    </div>
+</div>
